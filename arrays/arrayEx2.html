@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>arrayEx2</title>
 </head>
+
 <body>
     <div>
-        <img src="/images/anim1.png" alt="">
+        <img src="/images/anim1.png" alt="" id="animImgs">
     </div>
-    <button>Next</button>
-    
+    <button onclick="imgSlide()">Next</button>
+
     <!-- Next 버튼 누르면 다음 이미지가 나온다.
          준비된 이미지가 끝나면 다시 처음 이미지를 보여준다 -->
     <script>
         let ar = ["anim1.png", "anim2.png", "anim3.png", "anim4.png", "anim5.png"]
-        function imgSlide(){
-
+        const animImgs = document.getElementById("animImgs");
+        let n = 1;
+        function imgSlide() {
+            animImgs.src = "/images/" + ar[(n % ar.length)];
+            n++;
         }
     </script>
 </body>
+
 </html>
