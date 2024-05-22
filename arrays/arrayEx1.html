@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arrayEx1</title>
+</head>
+
+<body>
+    <input type="checkbox" name="ch" id="checkAll" class="ch" value="1" onclick="checkedAll()"><br>
+    <input type="checkbox" name="ch" class="ch" value="1" onclick="checkedAllSub()">
+    <input type="checkbox" name="ch" class="ch" value="2" onclick="checkedAllSub()">
+    <input type="checkbox" name="ch" class="ch" value="3" onclick="checkedAllSub()">
+    <input type="checkbox" name="ch" class="ch" value="4" onclick="checkedAllSub()">
+
+    <button onclick="checkedPrint()">CLICK</button>
+
+    <script>
+        //ch 변수에 class 명이 "ch"인 elements 유사배열 주소 대입
+        const ch = document.getElementsByClassName("ch");
+
+        //모든 체크 박스의 checked 속성 출력
+        function checkedPrint() {
+            for (let i = 0; i < ch.length; i++) {
+                console.log((i + 1) + " 번째 체크박스 checked 속성의 값: " + ch[i].checked);
+            }
+            console.log("\n");
+        }
+
+        //전체 체크 클릭시 전체 체크의 값 복사
+        function checkedAll() {
+            for (let i = 0; i < ch.length; i++) {
+                ch[i].checked = ch[0].checked;
+            }
+        }
+
+        //체크 박스가 모두 체크되면 자동으로 전체 체크의 값 true
+        function checkedAllSub() {
+            let chTmp = [];
+            for (let i = 0; i < ch.length; i++) {
+                chTmp.push(ch[i].checked);
+            }
+            if (ch.length > 2) {
+                for (let i = 1; i < (ch.length - 1); i++) {
+                    if (chTmp[i] !== chTmp[i + 1]) {
+                        ch[0].checked = false;
+                        break;
+                    }
+                    if (i == (ch.length - 2)) {
+                        ch[0].checked = chTmp[i];
+                    }
+                }
+            } else {
+                ch[0].checked = ch[1].checked;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arrStudy2</title>
+    <style>
+        .arrEx {
+            background-color:beige;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="text" class="arrEx">
+    <input type="text" class="arrEx">
+    <input type="text" class="arrEx">
+    <button id="btn" class="btn" onclick="info()">CLICK</button>
+
+    <script>
+        let arrEx = document.getElementsByClassName("arrEx");
+        let btn = document.getElementsByClassName("btn");
+        function info() {
+            for (let i = 0; i < arrEx.length; i++) {
+                console.log(arrEx[i].value);
+            }
+            console.log(btn);
+            console.log(btn[0]);
+        }
+    </script>
+</body>
+
+</html>
