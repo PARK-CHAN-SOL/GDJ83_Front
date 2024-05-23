@@ -21,7 +21,36 @@
     <button onclick="checkedPrint()">CLICK</button>
 
     <script>
-        
+        const ch = document.getElementsByClassName("ch");
+        const checkAll = document.getElementById("checkAll");
+
+        for (let i = 0; i < ch.length; i++) {
+            ch[i].addEventListener("click", function () {
+                for (let i = 0; i < ch.length - 1; i++) {
+                    if (ch[i].checked !== ch[i + 1].checked) {
+                        checkAll.checked = false;
+                        break;
+                    }
+                    if (i == ch.length - 2) {
+                        checkAll.checked = ch[i].checked;
+                    }
+                }
+            })
+        }
+
+        function checkedAll() {
+            for (let i = 0; i < ch.length; i++) {
+                ch[i].checked = checkAll.checked;
+            }
+        }
+
+        function checkedPrint() {
+            for (let i = 0; i < ch.length; i++) {
+                console.log((i + 1) + "번째 체크박스의 값: " + ch[i].checked);
+            }
+        }
+
+
     </script>
 </body>
 
