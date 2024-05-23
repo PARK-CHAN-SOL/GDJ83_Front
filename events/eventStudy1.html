@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eventStudy1</title>
+</head>
+
+<body>
+    <button id="btn1">CLICK</button>
+    <button id="btn2">CLICK</button>
+    <button id="btn3">CLICK</button>
+</body>
+
+<script>
+    const btn1 = document.getElementById("btn1");
+    const btn2 = document.getElementById("btn2");
+    const btn3 = document.getElementById("btn3");
+    btn1.onclick = function () {
+        console.log("CLICK");
+    };
+
+    // btn2.onclick = go(); --> 안됨
+    // btn2.onclick = go;
+    btn2.onclick = function () {
+        go();
+    }
+
+    btn3.addEventListener("click", function () {
+        console.log("btn3");
+    });
+
+    function go() {
+        console.log("go() 호출");
+    }
+</script>
+
+</html>

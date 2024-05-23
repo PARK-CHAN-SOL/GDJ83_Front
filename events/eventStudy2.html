@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eventStudy2</title>
+    <style>
+        #result {
+            width: 200px;
+            height: 200px;
+            border: 2px solid red;
+        }
+
+        .bg {
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="result"></div>
+    <script>
+        const result = document.getElementById("result");
+        result.addEventListener("mouseenter", function () {
+            result.classList.add("bg");
+        })
+        result.addEventListener("mouseleave", function () {
+            result.classList.remove("bg");
+        })
+    </script>
+</body>
+
+</html>

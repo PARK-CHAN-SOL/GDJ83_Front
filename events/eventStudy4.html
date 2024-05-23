@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- btn1을 클릭하면 result의 innerHTML에 '<button id="btn2">click</button>' 생성 -->
+    <div id="result"></div>
+
+    <button id="btn1">CLICK</button>
+    <!-- <button id="btn2">BUTTON</button> -->
+
+    <button class="b1" title="btn1">BTN1</button>
+    <button class="b1" title="btn2">BTN2</button>
+    <button class="b1" title="btn3">BTN3</button>
+
+    <script>
+        const btn1 = document.getElementById("btn1")
+        const btn2 = document.getElementById("btn2")
+        const result = document.getElementById("result")
+
+        const b1 = document.getElementsByClassName("b1");
+        for (let i = 0; i < b1.length; i++) {
+            b1[i].addEventListener("click", function () {
+                console.log(this.title);
+            });
+        }
+        btn1.addEventListener("click", function () {
+            result.innerHTML = '<button id="btn2">click</button>';
+        })
+        btn2.addEventListener("click", function () {
+            // btn1.click();
+            console.log("log");
+        })
+
+
+    </script>
+</body>
+
+</html>
