@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classStudy</title>
+    <style>
+        .c1 {
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+        }
+
+        .c2 {
+            background-color: red;
+        }
+
+        .c3 {
+            width: 200px;
+            height: 100px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="c1 c3"></div>
+    <button onclick="addClass()">CLICK</button>
+
+    <script>
+        const c1 = document.getElementsByClassName("c1");
+        const c11 = document.getElementsByClassName("c1");
+        const c111 = document.getElementsByClassName("c1");
+        const c3 = document.getElementsByClassName("c3");
+        //클릭하면 c1 클래스를 가지고 있는 요소의 c1을 c3로 대체하고, c2클래스를 추가
+        function addClass() {
+            //getElementsByClassName으로 받아오면 요소가 하나여도 배열이다.
+            // --> c1.classList로 접근할 수 없다. c1[index].classList로 접근해야한다.
+            //classList로 받아온 것도 class가 하나여도 배열이다.
+            // --> 하나의 클래스명을 받기 위해선 c1[index].classList[index2] 로 접근해야한다.
+            // console.log(c1[0].classList[0]);
+            // c1[0].classList.replace("c1", "c3");
+
+            //이건 뭐지?? c1의 classList를 바꾸면 새로운 element 객체를 생성후
+            //HTML의 기존 자리에 해당 객체를 삽입
+            
+            //getElementsByClassName은 해당 클래스명을 가진 집단? 배열? 을 반환
+            //getElementsByClassName("c1") 으로 선언한 변수, 상수는 모두 동일한 집단을 반환
+            //getElementsByClassName("c1") 로 선언한 변수와 getElementsByClassName("c3") 로 선언한 변수는
+            //같은 요소를 포함하고 있어도, 우연히 두 집단의 교집합이 전체 집합이 된 것 뿐, 가리키는 주소가 다름
+            //c1을 지우면 해당 집단에서 요소가 알아서 빠짐
+            // --> getElementsByClassName을 새로 호출하지 않아도 요소가 빠짐
+            c1[0].classList.toggle("c3");
+            if (c1 == c3) {
+                console.log("c1 == c3 true");
+            } else {
+                console.log("c1 == c3 false");
+            }
+
+            if(c1 == c11 && c11 == c111){
+                console.log("c1 == c11 && c11 == c111");
+            }
+        }
+    </script>
+</body>
+
+</html>

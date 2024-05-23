@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classEx1</title>
+    <style>
+        .inputIsEmpty {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="text" class="div_input">
+    </div>
+    <div>
+        <input type="text" class="div_input">
+    </div>
+    <div>
+        <input type="text" class="div_input">
+    </div>
+    <div>
+        <input type="text" class="div_input">
+    </div>
+    <button onclick="checkEmpty()">CLICK</button>
+
+    <script>
+        const div_input = document.getElementsByClassName("div_input");
+
+        function checkEmpty() {
+
+            for (let i = 0; i < div_input.length; i++) {
+
+                div_input[i].value = div_input[i].value.trim();
+
+                if (div_input[i].value == "") {
+                    div_input[i].classList.add("inputIsEmpty");
+                } else {
+                    div_input[i].classList.remove("inputIsEmpty");
+                }
+
+            }
+        }
+    </script>
+</body>
+
+</html>
