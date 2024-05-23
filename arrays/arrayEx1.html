@@ -12,10 +12,10 @@
     <input type="checkbox" name="ch" id="checkAll" class="ch" value="1" onclick="checkedAll()"><br>
 
     <!-- sub 체크 박스 -->
-    <input type="checkbox" name="ch" class="ch" value="1" onclick="checkedAllSub()">
-    <input type="checkbox" name="ch" class="ch" value="2" onclick="checkedAllSub()">
-    <input type="checkbox" name="ch" class="ch" value="3" onclick="checkedAllSub()">
-    <input type="checkbox" name="ch" class="ch" value="4" onclick="checkedAllSub()">
+    <input type="checkbox" name="ch" class="ch" value="1">
+    <input type="checkbox" name="ch" class="ch" value="2">
+    <input type="checkbox" name="ch" class="ch" value="3">
+    <input type="checkbox" name="ch" class="ch" value="4">
 
     <!-- 체크 박스의 checked 값 출력 함수 호출 -->
     <button onclick="checkedPrint()">CLICK</button>
@@ -24,6 +24,12 @@
         //ch 변수에 class 명이 "ch"인 elements 유사배열 주소 대입
         const ch = document.getElementsByClassName("ch");
 
+        //모든 sub 박스들에 이벤트 추가
+        for(let i =1; i < ch.length; i++){
+            ch[i].addEventListener("click", function(){
+                checkedAllSub();
+            })
+        }
         //모든 체크 박스의 checked 속성 출력
         function checkedPrint() {
             for (let i = 0; i < ch.length; i++) {
