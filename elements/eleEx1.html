@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eleEx1</title>
+    <style>
+        /* div {
+            text-decoration: line-through;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="fruitBox">
+        <!-- <input type="checkbox">바나나 -->
+    </div>
+
+    <script>
+        const ar = ["바나나", "수박", "참외", "사과", "망고"];
+        const fruitBox = document.getElementById("fruitBox");
+
+        for (let i = 0; i < ar.length; i++) {
+
+            //<div></div>
+            let div = document.createElement("div");
+
+            //<input>
+            let input = document.createElement("input");
+
+            //<input type="checkbox">
+            input.type = "checkBox";
+
+            //<div><input type="checkbox">ar[i]</div>
+            div.append(input, ar[i]);
+
+            //<input type="checkbox">ar[i]<br>
+            fruitBox.append(div);
+        }
+    </script>
+</body>
+
+</html>

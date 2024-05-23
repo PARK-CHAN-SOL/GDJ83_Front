@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eleStudy1</title>
+    <!-- JS에서 Element 생성 -->
+</head>
+
+<body>
+    <input type="text" id="info">
+    <button id="btn">Add</button>
+    <ul id="result">
+
+    </ul>
+
+    <div id="result2">
+        <!-- 버튼을 누를 때 
+            <div>
+                <input type="file"><span>X</span>
+            </div>
+            이런 형태를 추가하고 싶다면 -->
+    </div>
+    <button id="btn2">Add2</button>
+
+    <script>
+        const info = document.getElementById("info");
+        const btn = document.getElementById("btn");
+        const result = document.getElementById("result");
+
+        const result2 = document.getElementById("result2");
+        const btn2 = document.getElementById("btn2");
+
+        btn.addEventListener("click", function () {
+            //abc
+            let v = info.value;
+            
+            //<li></li>
+            let li = document.createElement("li");
+
+            //contents node생성 (text node)
+            let c = document.createTextNode(v);
+
+            //<li>abc</li>
+            li.appendChild(c);
+
+            result.append(li);
+
+        })
+
+        btn2.addEventListener("click", function () {
+            //<div></div>
+            let d = document.createElement("div");
+
+            //<input>
+            let i = document.createElement("input");
+
+            //type="file"
+            let a = document.createAttribute("type");
+            a.value = "file"
+
+            //<span></span>
+            let s = document.createElement("span");
+
+            //"X" (text node)
+            let x = document.createTextNode("X");
+
+            //<input type="file">
+            // i.type = "file"; 아래와 동일한 결과
+            i.setAttributeNode(a);
+
+            //<span>X</span>
+            s.appendChild(x);
+
+            //<div><input type="file"></div>
+            d.appendChild(i);
+
+            //<div><input type="file"><span>X</span></div>
+            d.appendChild(s);
+
+            result2.append(d);
+        })
+    </script>
+</body>
+
+</html>
