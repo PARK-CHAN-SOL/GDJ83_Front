@@ -11,17 +11,21 @@
     <div>
         <img src="/images/anim1.png" alt="" id="animImgs">
     </div>
-    <button onclick="imgSlide()">Next</button>
+    <button onclick="imgSlide(-1)">Prev</button>
+    <button onclick="imgSlide(1)">Next</button>
 
     <!-- Next 버튼 누르면 다음 이미지가 나온다.
          준비된 이미지가 끝나면 다시 처음 이미지를 보여준다 -->
     <script>
         let ar = ["anim1.png", "anim2.png", "anim3.png", "anim4.png", "anim5.png"]
         const animImgs = document.getElementById("animImgs");
-        let n = 1;
-        function imgSlide() {
+        let n = 0;
+        function imgSlide(count) {
+            n += count;
+            if (n == -1) {
+                n = 4;
+            }
             animImgs.src = "/images/" + ar[(n % ar.length)];
-            n++;
         }
     </script>
 </body>
