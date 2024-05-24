@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <style>
+        .lineThrough {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- To Do List! -->
+
+    <div>
+        <!-- 할일 적고 버튼을 클릭하면 등록 -->
+        <input type="text" id="whatToDo">
+        <button id="Add">Add</button>
+    </div>
+
+    <div id="motherDiv">
+        <!-- 버튼 누르면 체크된 거 삭제 -->
+        <div>
+            <button id="recycleBin">휴지통</button>
+        </div>
+
+        <!-- 체크 박스 체크하면 취소선이 생김 -->
+        <!-- 체크 박스 체크 해제하면 취소선이 생김 -->
+    </div>
+
+    <script>
+        const motherDiv = document.getElementById("motherDiv");
+        const whatToDo = document.getElementById("whatToDo");
+        const Add = document.getElementById("Add");
+        const recycleBin = document.getElementById("recycleBin");
+
+        //Add 버튼에 클릭 이벤트 리스너 추가
+        //버튼 클릭하면 To Do List 생성
+        Add.addEventListener("click", function () {
+
+            //값을 입력하는 input 태그 안에 내용이 없으면, list를 만들지 않음
+            if (whatToDo.value !== "") {
+
+                //<div></div>
+                chkDiv = document.createElement("div");
+
+                //<div class="checkbox"></div>
+                chkDiv.setAttribute("class", "checkbox");
+
+                //<input>
+                chk = document.createElement("input");
+
+                //<input type="checkbox">
+                chk.setAttribute("type", "checkbox");
+
+                //<input type="checkbox" class="checkbox">
+                chk.setAttribute("class", "checkbox");
+
+                //<span></span>
+                sp = document.createElement("span");
+
+                //<span class="checkbox"></span>
+                sp.setAttribute("class", "checkbox");
+
+                //<span class="checkbox">whatToDo.value</span>
+                sp.append(whatToDo.value);
+
+                //<div class="checkbox">
+                //  <input type="checkbox" class="checkbox">
+                //  <span class="checkbox">whatToDo.value</span>
+                //</div>
+                chkDiv.append(chk, sp);
+
+                //<div id="motherDiv">
+                //  <div class="checkbox">
+                //      <input type="checkbox" class="checkbox">
+                //      <span class="checkbox">whatToDo.value</span>
+                //  </div>
+                //</div>
+                motherDiv.append(chkDiv);
+            }
+        })
+
+        //motherDiv에 클릭 이벤트 리스너 추가 (이벤드 전달 위함)
+        motherDiv.addEventListener("click", function (e) {
+
+            //클릭 이벤트의 타겟이 "checkbox"라는 type일 경우에만 함수 실행
+            // --> 체크박스를 클릭할때만 함수 실행
+            if (e.target.getAttribute("type") == "checkbox") {
+                lineToggle(e);
+            }
+        })
+
+        //.line이라는 css 스타일을 적용시키는 함수
+        //체크박스를 클릭하면 실행됨
+        function lineToggle(e) {
+
+            //chkbox라는 상수에 "checkbox"라는 클래스를 가지고 있는 집단의 주소 대입
+            // --> 유사배열 생성
+            const chkbox = document.getElementsByClassName("checkbox");
+
+            //div, input, span 모든 태그가 같은 클래스 이름을 가지고있으며 ("checkbox")
+            //한 묶음으로 생성됨.
+            // --> chkbox 배열은 반드시 3의 배수 개의 길이를 가짐
+            // --> chkbox 배열의 순서는 div, input, span 요소가 반복됨
+            //  --> i를 3씩 증가시키면서 묶음 단위로 반복문 실행
+            for (let i = 0; i < chkbox.length; i += 3) {
+
+                //선택한 체크박스를 (e.target) chbox[i+1]과 비교 (i+1번째는 input태그가 담겨있음)
+                if (e.target == chkbox[i + 1]) {
+
+                    //선택한 체크박스(chkbox[i+1]) 바로 옆의 span태그의(chkbox[i+2]) class 명을 toggle
+                    //"lineThrough" 클래스가 없으면 추가, 있으면 제거
+                    // --> 체크하면 "lineThrough" 클래스 추가, 체크 해제하면 "lineThrough" 클래스 제거
+                    chkbox[i + 2].classList.toggle("lineThrough");
+                }
+            }
+        }
+
+        //휴지통 버튼의 클릭 이벤트 리스너 추가
+        recycleBin.addEventListener("click", function () {
+
+            //chkbox라는 상수에 "checkbox"라는 클래스를 가지고 있는 집단의 주소 대입
+            // --> 유사배열 생성
+            const chkbox = document.getElementsByClassName("checkbox");
+
+            //묶음 단위로 반복문 실행
+            for (let i = 0; i < chkbox.length; i += 3) {
+
+                //input 태그의(chkbox[i+1]) checked 값이 true일 경우
+                if (chkbox[i + 1].checked) {
+
+                    //input 태그 상단의 (chkbox[i]) div 태그를 제거
+                    chkbox[i].remove();
+
+                    //제거가 완료되면 배열의 요소가 총 3개 (div, input, span) 지워지기 때문에,
+                    //chkbox 배열의 인덱스가 앞으로 3 씩 당겨짐,
+                    //chkbox 배열의 length역시 3 줄어듦.
+                    // --> ex) chkbox = [1, 2, 3, 4, 5, 6] ==> chkbox = [4, 5, 6]
+                    //따라서 i를 3 감소시킴
+                    // -->(i가 감소되지 않으면 다음 반복문 증감식에서 i가 3 증가되는 것과
+                    //      요소가 3 줄어드는 효과가 중첩되어 나타나므로
+                    //      반복문이 하나의 묶음(div, input, span)을 건너뜀                  
+                    i -= 3;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
