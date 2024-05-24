@@ -40,9 +40,33 @@
 
     <script>
         const checkAll = document.getElementById("checkAll");
+        const mailDelete = document.getElementById("mailDelete");
+        
         const mailDiv = document.getElementsByClassName("mailDiv");
         const mailCheckBox = document.getElementsByClassName("mailCheckBox");
-        const mailDelete = document.getElementById("mailDelete");
+
+        //전체 체크박스에 클릭 이벤트 리스너 추가
+        checkAll.addEventListener("click", function () {
+
+            //전체 체크박스의 값을 모든 체크박스에 대입
+            for (let i = 0; i < mailCheckBox.length; i++) {
+                mailCheckBox[i].checked = checkAll.checked;
+            }
+        })
+
+        //모든 체크 박스의 값중 하나라도 false이면 전체 체크 박스도 false
+        //모든 체크 박스가 모두 true이면 전체 체크 박스도 true
+        for (let i = 0; i < mailCheckBox.length; i++) {
+            mailCheckBox[i].addEventListener("click", function () {
+                for (let j = 0; j < mailCheckBox.length; j++) {
+                    if (!mailCheckBox[j].checked) {
+                        checkAll.checked = false;
+                        return;
+                    }
+                }
+                checkAll.checked = true;
+            })
+        }
 
         //각 메일이 담긴 div에 인덱스를 설정
         for (let i = 0; i < mailCheckBox.length; i++) {
@@ -67,28 +91,6 @@
             }
         })
 
-        //전체 체크박스에 클릭 이벤트 리스너 추가
-        checkAll.addEventListener("click", function () {
-
-            //전체 체크박스의 값을 모든 체크박스에 대입
-            for (let i = 0; i < mailCheckBox.length; i++) {
-                mailCheckBox[i].checked = checkAll.checked;
-            }
-        })
-
-        //모든 체크 박스의 값중 하나라도 false이면 전체 체크 박스도 false
-        //모든 체크 박스가 모두 true이면 전체 체크 박스도 true
-        for (let i = 0; i < mailCheckBox.length; i++) {
-            mailCheckBox[i].addEventListener("click", function () {
-                for (let j = 0; j < mailCheckBox.length; j++) {
-                    if (!mailCheckBox[j].checked) {
-                        checkAll.checked = false;
-                        return;
-                    }
-                }
-                checkAll.checked = true;
-            })
-        }
 
     </script>
 </body>
