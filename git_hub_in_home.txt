@@ -1,0 +1,16 @@
+
+	Git-hub에서 최초 다운
+
+	1. git-hub의 repository url 복사
+		-repository 첫화면 -> code -> https 주소 복사
+
+	2. git-fork
+		a) file -> clone repository
+		b) 복사한 주소를 repository에 붙여넣기(자동입력)
+		c) Test Connection 실행 후 확인
+		d) parent 폴더 경로와 name(폴더명) 확인
+		e) clone 버튼 클릭 (마스터 브랜치만 연동됨)
+
+	3. 다른 branch도 가져오고 싶을 때
+		a) Remotes -> origin -> 원하는 브랜치 우클릭
+		b) checkout ,,, 선택 -> track 클릭
