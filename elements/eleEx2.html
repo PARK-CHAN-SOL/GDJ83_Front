@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eleEx2</title>
+</head>
+
+<body>
+    <div>
+        <input type="checkbox" id="checkAll"><!--check all-->
+        <button id="mailDelete">DELETE</button>
+    </div>
+
+    <div class="mailDiv">
+        <input type="checkbox" class="mailCheckBox">
+        <span>mail title1</span>
+    </div>
+    <div class="mailDiv">
+        <input type="checkbox" class="mailCheckBox">
+        <span>mail title2</span>
+    </div>
+    <div class="mailDiv">
+        <input type="checkbox" class="mailCheckBox">
+        <span>mail title3</span>
+    </div>
+    <div class="mailDiv">
+        <input type="checkbox" class="mailCheckBox">
+        <span>mail title4</span>
+    </div>
+    <div class="mailDiv">
+        <input type="checkbox" class="mailCheckBox">
+        <span>mail title5</span>
+    </div>
+    <div class="mailDiv">
+        <input type="checkbox" class="mailCheckBox">
+        <span>mail title6</span>
+    </div>
+
+    <script>
+        const checkAll = document.getElementById("checkAll");
+        const mailDiv = document.getElementsByClassName("mailDiv");
+        const mailCheckBox = document.getElementsByClassName("mailCheckBox");
+        const mailDelete = document.getElementById("mailDelete");
+
+        //각 메일이 담긴 div에 인덱스를 설정
+        for (let i = 0; i < mailCheckBox.length; i++) {
+            mailDiv[i].id = "mailDivIndex" + i;
+        }
+
+        //DELETE 버튼에 클릭 이벤트 리스너 추가
+        mailDelete.addEventListener("click", function () {
+            for (let i = 0; i < mailCheckBox.length; i++) {
+                //각 메일의 체크박스의 값을 확인
+                if (mailCheckBox[i].checked) {
+
+                    //체크박스가 체크되어있을 경우 해당 메일 삭제
+                    document.getElementById(mailDiv[i].getAttribute("id")).remove();
+
+                    //remove() 가 실행되면 뒤쪽 메일의 인덱스가 한칸 당겨짐
+                    //i는 다시 증감식으로 돌아가서 1증가함.
+                    // --> i가 2증가한 것처럼 하나의 메일을 건너뜀 (배열 인덱스 당겨짐 + i 증가함)
+                    //  --> remove()가 실행될 시 i를 1 빼줘야함
+                    i--;
+                }
+            }
+        })
+
+        //전체 체크박스에 클릭 이벤트 리스너 추가
+        checkAll.addEventListener("click", function () {
+
+            //전체 체크박스의 값을 모든 체크박스에 대입
+            for (let i = 0; i < mailCheckBox.length; i++) {
+                mailCheckBox[i].checked = checkAll.checked;
+            }
+        })
+
+        //모든 체크 박스의 값중 하나라도 false이면 전체 체크 박스도 false
+        //모든 체크 박스가 모두 true이면 전체 체크 박스도 true
+        for (let i = 0; i < mailCheckBox.length; i++) {
+            mailCheckBox[i].addEventListener("click", function () {
+                for (let j = 0; j < mailCheckBox.length; j++) {
+                    if (!mailCheckBox[j].checked) {
+                        checkAll.checked = false;
+                        return;
+                    }
+                }
+                checkAll.checked = true;
+            })
+        }
+
+    </script>
+</body>
+
+</html>

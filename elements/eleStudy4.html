@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eleStudy4</title>
+</head>
+
+<body>
+    <div class="outerDiv">
+        <h3>1</h3>
+        <button class="removeButton">CLICK</button>
+    </div>
+
+    <div class="outerDiv">
+        <h3>2</h3>
+        <button class="removeButton">CLICK</button>
+    </div>
+
+    <div class="outerDiv">
+        <h3>3</h3>
+        <button class="removeButton">CLICK</button>
+    </div>
+
+    <div class="outerDiv">
+        <h3>4</h3>
+        <button class="removeButton">CLICK</button>
+    </div>
+
+    <script>
+        const outerDiv = document.getElementsByClassName("outerDiv");
+        const removeButton = document.getElementsByClassName("removeButton");
+
+        for (let i = 0; i < removeButton.length; i++) {
+            //각 div 태그에 id부여
+            outerDiv[i].id = "outerDivId"+i;
+            
+            //각 버튼에 EventListener 설정
+            removeButton[i].addEventListener("click", function () {         
+                
+                //같은 id를 가지는 element제거
+                document.getElementById("outerDivId"+i).remove();
+            })
+        }
+
+
+        // function resetEL (e, length) {
+
+        // }
+    </script>
+</body>
+
+</html>
