@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eventStudy6</title>
+</head>
+
+<body>
+
+    <div id="result">
+
+    </div>
+    <button id="add">add</button>
+    <a href="https://www.naver.com" id="naver">Naver</a>
+
+    <script>
+        const add = document.getElementById("add");
+        const result = document.getElementById("result");
+        const naver = document.getElementById("naver");
+
+        naver.addEventListener("click", function (e) {
+            alert("naver");
+            e.preventDefault();
+        })
+
+        add.addEventListener("click", function () {
+            let i = document.createElement("input");
+            i.setAttribute("type", "checkbox");
+            i.classList.add("ch");
+
+            result.append(i);
+        })
+
+        result.addEventListener("click", function (e) {
+            if (e.target.classList.contains("ch")) {
+                console.log("나는 체크박스")
+            }
+        })
+    </script>
+
+</body>
+
+</html>

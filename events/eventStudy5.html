@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eventStudy5</title>
+    <style>
+        div {
+            width: 200px;
+            height: 70px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="btns">click1</button>
+    <button class="btns">click2</button>
+
+    <div id="result">
+    </div>
+    <button id="add">Add</button>
+
+    <script>
+        const btns = document.getElementsByClassName("btns");
+        const add = document.getElementById("add");
+        const result = document.getElementById("result");
+
+        const b = document.getElementById("b");
+
+        result.addEventListener("click", function (e) {
+            // console.log(e);
+            if (e.target.classList.contains("btns")) {
+                go();
+            }
+        })
+
+        add.addEventListener("click", function () {
+            let b = document.createElement("button");
+            b.append("click");
+            b.className = "btns";
+            result.append(b);
+        })
+
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                go();
+            })
+        }
+
+        function go () {
+            console.log("같은 일을 하자")
+        }
+    </script>
+</body>
+
+</html>
