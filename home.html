@@ -21,12 +21,14 @@
         <button id="Add">Add</button>
     </div>
 
-    <div id="motherDiv">
-        <!-- 버튼 누르면 체크된 거 삭제 -->
-        <div>
-            <button id="recycleBin">휴지통</button>
-        </div>
+    <!-- checkAll 체크박스 체크하면 전체 체크-->
+    <!-- 휴지통 버튼 누르면 체크된 거 삭제 -->
+    <div>
+        <input type="checkbox" id="checkAll">
+        <button id="recycleBin">휴지통</button>
+    </div>
 
+    <div id="motherDiv">
         <!-- 체크 박스 체크하면 취소선이 생김 -->
         <!-- 체크 박스 체크 해제하면 취소선이 생김 -->
     </div>
@@ -36,6 +38,7 @@
         const whatToDo = document.getElementById("whatToDo");
         const Add = document.getElementById("Add");
         const recycleBin = document.getElementById("recycleBin");
+        const checkAll = document.getElementById("checkAll");
 
         //Add 버튼에 클릭 이벤트 리스너 추가
         //버튼 클릭하면 To Do List 생성
@@ -118,6 +121,15 @@
                     chkbox[i + 2].classList.toggle("lineThrough");
                 }
             }
+
+            //전체체크 반복문
+            for (let i = 0; i < chkbox.length; i += 3) {
+                if (!chkbox[i + 1].checked) {
+                    checkAll.checked = false;
+                    return;
+                }
+            }
+            checkAll.checked = true;
         }
 
         //휴지통 버튼의 클릭 이벤트 리스너 추가
@@ -148,6 +160,50 @@
                 }
             }
         })
+
+        //whatToDo에 keyup 이벤트 리스너 추가
+        whatToDo.addEventListener("keyup", function (e) {
+
+            //엔터키를 입력받았다면 Add.click() 호출, whatToDo input value 초기화
+            if (e.code === 'Enter') {
+                Add.click();
+                this.value = "";
+            }
+        })
+
+        //전체 체크박스에 클릭 이벤트 리스너 추가
+        checkAll.addEventListener("click", function () {
+
+            const chkbox = document.getElementsByClassName("checkbox");
+
+            //전체 체크박스의 값을 모든 체크박스에 대입
+            for (let i = 0; i < chkbox.length; i += 3) {
+                chkbox[i + 1].checked = checkAll.checked;
+
+                //체크박스가 체크되어 있을 경우
+                if (chkbox[i + 1].checked) {
+
+                    //span 태그의 lineThrough 클래스가 없다면
+                    if (!chkbox[i + 2].classList.contains("lineThrough")) {
+
+                        //span 태그의 lineThrough 클래스 추가
+                        chkbox[i + 2].classList.toggle("lineThrough");
+                    } 
+
+                    //체크박스가 체크되어 있지 않을 경우
+                } else{
+
+                    //span 태그의 lineThrough 클래스가 있다면
+                    if (chkbox[i + 2].classList.contains("lineThrough")) {
+
+                        //span 태그의 lineThrough 클래스 제거
+                        chkbox[i + 2].classList.toggle("lineThrough");
+                    } 
+                }
+            }
+        })
+
+
     </script>
 </body>
 
