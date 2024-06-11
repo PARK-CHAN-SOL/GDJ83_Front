@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .t1 {
+            border: 2px solid black;
+
+            /* 테두리간 간격 조정 */
+            border-spacing: 0;
+
+            /* 선이 겹칠 경우 */
+            border-collapse: collapse;
+
+            /* 60%는 부모기준 비례 */
+            width: 60%;
+            /* body가 부모라면 height는 % 못씀 body는 height 무한대
+            height: 50%; */
+        }
+
+        .t1 td,
+        .t1 th {
+            border: 2px dashed red;
+            height: 70px;
+            text-align: center;
+            font-size: x-large;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="t1">
+        <tr>
+            <td rowspan="2">1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+
+        <tr>
+
+            <td>5</td>
+            <td>
+                <table>
+                    <tr>
+                        <td>a</td>
+                        <td>b</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3">7</td>
+
+
+        </tr>
+    </table>
+
+    <table class="t1">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>sol</td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            
+        </tfoot>
+    </table>
+
+</body>
+
+</html>

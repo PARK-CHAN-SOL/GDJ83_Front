@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="t1">
+    <button id="btn">CLICK</button>
+
+    <div id="result">
+
+    </div>
+
+    <script>
+        // 입력하고 버튼을 클릭하면
+        // 글자당 1000원씩 계산
+
+        const t1 = document.getElementById("t1");
+        const btn = document.getElementById("btn");
+        const result = document.getElementById("result");
+
+        btn.addEventListener("click", function () {
+
+            // if(result.hasChildNodes() == true){
+            //     result.removeChild(result.childNodes[0]);
+            // }
+            let str = t1.value;
+            const span = document.createElement("span");
+            // span.className = "spn";
+            // const spn = document.getElementsByClassName("spn");
+            // span.append((str.length)*1000 + "원");
+            // result.append(span);
+            result.innerHTML = "<h3>" + "결과값: " + str.length * 1000 + "원" + "</h3>";
+
+        })
+    </script>
+</body>
+
+</html>

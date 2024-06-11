@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="file" class="files">
+    <input type="file" class="files">
+    <input type="file" class="files">
+    <button id="btn1">CLICK</button>
+
+    <script>
+        const files = document.getElementsByClassName("files");
+        const btn1 = document.getElementById("btn1");
+        btn1.addEventListener("click", function () {
+            for (let i = 0; i < files.length; i++) {
+                let str = files[i].value;
+                str = str.substring(str.lastIndexOf('.') + 1);
+                if (str !== "jpg" && str !== "png" && str !== "gif" && str !== "jpeg" && str !== "jiff") {
+                    console.log("이미지 파일X");
+                    return;
+                } 
+            }
+            
+            console.log("이미지 파일O");
+
+            // str = str.substring(str.lastIndexOf('.') + 1);
+
+        })
+    </script>
+</body>
+
+</html>
